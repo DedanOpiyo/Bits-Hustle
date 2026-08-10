@@ -1,0 +1,1 @@
+SELECT id, name FROM lead_status_types;

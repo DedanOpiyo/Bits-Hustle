@@ -1,0 +1,27 @@
+# Frontend Build Only Dockerfile
+# Used when frontend is served from main nginx that proxies /api to backend subdomain
+# Run: docker build -t bitshustle-frontend -f Dockerfile.frontend .
+# Then copy /usr/share/nginx/html from container to your nginx root
+
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+# Copy package files
+COPY frontend/package*.json ./
+
+# Install dependencies
+RUN npm ci --omit=dev
+
+# Copy source code
+COPY frontend/ .
+
+# Build for production
+RUN npm run build
+
+# Stage 2: Prepare assets for host nginx
+FROM alpine AS export
+COPY --from=builder /app/dist /usr/share/nginx/html
+RUN apk add --no-cache nginx
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
