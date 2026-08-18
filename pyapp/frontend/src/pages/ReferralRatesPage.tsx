@@ -156,7 +156,7 @@ export default function ReferralRatesPage() {
                 >
                   <option value="">All Platforms (Default)</option>
                   {plat.map((p: any) => (
-                    <option key={p.id} value={p.id}>{p.displayName}</option>
+                    <option key={p.id} value={p.id}>{p.display_name}</option>
                   ))}
                 </select>
               </div>
@@ -243,7 +243,7 @@ export default function ReferralRatesPage() {
                   >
                     <option value="">All Platforms (Default)</option>
                     {plat.map((p: any) => (
-                      <option key={p.id} value={p.id}>{p.displayName}</option>
+                      <option key={p.id} value={p.id}>{p.display_name}</option>
                     ))}
                   </select>
                 </div>

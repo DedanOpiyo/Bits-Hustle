@@ -255,7 +255,7 @@ const { data: advancedKPIs, isLoading: advancedLoading, isError: advancedError }
                   <tbody>
                     {platformMetrics.map((p: any) => (
                       <tr key={p.platform.id}>
-                        <td>{p.platform.displayName}</td>
+                        <td>{p.platform.display_name}</td>
                         <td>{p.leadCount}</td>
                         <td>{p.campaignCount}</td>
                         <td>{formatKES(p.totalEarnings)}</td>

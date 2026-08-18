@@ -278,7 +278,7 @@ export default function Dashboard() {
                 <div key={task.id} className="flex items-center gap-3 p-3 rounded-lg bg-base-200/30">
                   <div className="flex-1 min-w-0">
                     <p className="font-medium truncate">{task.title}</p>
-                    <p className="text-xs text-base-content/50">{task.platform?.displayName || 'General'}</p>
+                    <p className="text-xs text-base-content/50">{task.platform?.display_name || 'General'}</p>
                   </div>
                   <span className="badge badge-sm badge-outline">{task.status?.display_name || task.status?.name}</span>
                 </div>

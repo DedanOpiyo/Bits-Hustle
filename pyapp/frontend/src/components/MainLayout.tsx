@@ -67,6 +67,7 @@ interface MainLayoutProps {
   children: ReactNode;
   rightChildren?: ReactNode;
   noIndex?: boolean;
+  description?: string;
 }
 
 export default function MainLayout({
@@ -74,6 +75,7 @@ export default function MainLayout({
   children,
   rightChildren,
   noIndex = false,
+  description,
 }: MainLayoutProps) {
   const { user, logout } = useAuth();
   const location = useLocation();
@@ -89,7 +91,7 @@ export default function MainLayout({
 
   return (
     <div className="min-h-screen bg-base-200">
-      <SEO title={pageTitle} noIndex={noIndex} />
+      <SEO title={pageTitle} description={description} noIndex={noIndex} />
       {/* Top Bar */}
       <header className="navbar bg-base-100 border-b border-base-300 px-4 sticky top-0 z-30">
         <div className="flex-1">

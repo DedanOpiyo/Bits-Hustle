@@ -39,6 +39,7 @@ class PlatformType(db.Model):
     webhook_secret_hash = db.Column(db.String(255))
     webhook_secret_prefix = db.Column(db.String(8))
     webhook_url = db.Column(db.String(512))
+    logo_url = db.Column(db.String(512))
     sort_order = db.Column(db.Integer, default=0)
     is_active = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)

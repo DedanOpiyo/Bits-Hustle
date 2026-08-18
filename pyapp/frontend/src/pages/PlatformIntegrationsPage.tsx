@@ -173,9 +173,10 @@ export default function PlatformIntegrationsPage() {
             )}
             <div className="overflow-x-auto">
               <table className="table table-zebra">
-                <thead>
+                 <thead>
                   <tr>
                     <th>Platform</th>
+                    <th>Logo</th>
                     <th>Referral URL Template</th>
                     <th>Webhook Secret</th>
                     <th>Active</th>
@@ -187,6 +188,7 @@ export default function PlatformIntegrationsPage() {
                     platforms.map((p: any) => (
                       <tr key={p.id}>
                         <td>{p.display_name || p.name}</td>
+                        <td>{p.logo_url ? <a href={p.logo_url} target="_blank" rel="noreferrer" className="link link-primary text-xs">View</a> : "—"}</td>
                         <td>
                           {p.referral_url_template ? (
                             <code className="text-xs bg-base-200 px-2 py-1 rounded break-all">{p.referral_url_template}</code>
@@ -209,8 +211,8 @@ export default function PlatformIntegrationsPage() {
                         </td>
                       </tr>
                     ))
-                  ) : (
-                    <tr><td colSpan={5} className="text-center text-base-content/50 py-8">No platforms configured.</td></tr>
+                    ) : (
+                    <tr><td colSpan={6} className="text-center text-base-content/50 py-8">No platforms configured.</td></tr>
                   )}
                 </tbody>
               </table>

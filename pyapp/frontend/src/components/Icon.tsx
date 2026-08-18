@@ -57,6 +57,8 @@ import {
   ChevronRight,
   Save,
   LifeBuoy,
+  Monitor,
+  Briefcase,
 } from 'lucide-react';
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -133,6 +135,8 @@ document: FileText,
   support: LifeBuoy,
   people: Users,
   trophy: Trophy,
+  monitor: Monitor,
+  briefcase: Briefcase,
 };
 
 export type IconName = keyof typeof Icons;

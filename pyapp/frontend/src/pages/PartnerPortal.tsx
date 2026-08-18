@@ -146,7 +146,7 @@ export default function PartnerPortal() {
                 <select value={newCampaign.platformId} onChange={(e) => setNewCampaign((p) => ({ ...p, platformId: e.target.value }))} className="select select-bordered w-full" required>
                   <option value="">Select Platform</option>
                   {platforms?.map((p: any) => (
-                    <option key={p.id} value={p.id}>{p.displayName}</option>
+                    <option key={p.id} value={p.id}>{p.display_name}</option>
                   ))}
                 </select>
               </div>
@@ -190,7 +190,7 @@ export default function PartnerPortal() {
                 <select value={editForm.platformId} onChange={(e) => setEditForm((p) => ({ ...p, platformId: e.target.value }))} className="select select-bordered w-full" required>
                   <option value="">Select Platform</option>
                   {platforms?.map((p: any) => (
-                    <option key={p.id} value={p.id}>{p.displayName}</option>
+                    <option key={p.id} value={p.id}>{p.display_name}</option>
                   ))}
                 </select>
               </div>
@@ -210,7 +210,9 @@ export default function PartnerPortal() {
           <div className="modal-box w-11/12 max-w-4xl">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold">{selectedCampaign.name}</h2>
-              <button onClick={() => setShowCampaignDetails(false)} className="btn btn-sm btn-ghost">✕</button>
+              <button onClick={() => setShowCampaignDetails(false)} className="btn btn-sm btn-ghost">
+                <Icon name="x" className="w-4 h-4" />
+              </button>
             </div>
             <p className="text-sm text-base-content/70 mb-4">{selectedCampaign.description}</p>
             <div className="flex gap-2 mb-4">

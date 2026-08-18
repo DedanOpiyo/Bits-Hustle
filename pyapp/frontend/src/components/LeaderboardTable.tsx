@@ -1,4 +1,5 @@
 import { cn } from "../utils";
+import { Icon } from "./Icon";
 
 interface LeaderboardEntry {
   rank?: number;
@@ -53,9 +54,9 @@ export function LeaderboardTable({ data, tab, metric = "performance" }: Leaderbo
   });
 
   const getMedal = (rank: number) => {
-    if (rank === 1) return "🥇";
-    if (rank === 2) return "🥈";
-    if (rank === 3) return "🥉";
+    if (rank === 1) return <Icon name="trophy" className="w-5 h-5 text-yellow-500 inline-block" />;
+    if (rank === 2) return <Icon name="trophy" className="w-5 h-5 text-gray-400 inline-block" />;
+    if (rank === 3) return <Icon name="trophy" className="w-5 h-5 text-orange-600 inline-block" />;
     return `#${rank}`;
   };
 

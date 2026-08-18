@@ -1,4 +1,5 @@
 import { Component, ReactNode } from 'react';
+import { Icon } from './Icon';
 
 interface ErrorBoundaryProps {
   children: ReactNode;
@@ -37,7 +38,9 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
       return (
         <div className="min-h-screen flex items-center justify-center bg-base-300 p-4">
           <div className="card bg-base-100 border border-base-300 shadow-xl max-w-lg w-full p-8 text-center">
-            <div className="text-error text-5xl mb-4">⚠️</div>
+            <div className="text-error mb-4 flex justify-center">
+              <Icon name="alert-triangle" className="w-16 h-16" />
+            </div>
             <h1 className="text-2xl font-bold mb-2">Something went wrong</h1>
             <p className="text-base-content/60 mb-4">
               The application encountered an unexpected error. This has been logged.

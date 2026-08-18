@@ -11,7 +11,10 @@ export const LEAD_STATUSES = [
 export type Platform = {
   id: string;
   name: string;
-  displayName: string;
+  display_name: string;
+  description?: string;
+  logo_url?: string;
+  referral_url_template?: string;
 };
 
 export type LeadStatus = typeof LEAD_STATUSES[number];

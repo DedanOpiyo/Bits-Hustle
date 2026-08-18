@@ -12,12 +12,13 @@ type FormState = {
   name: string;
   display_name: string;
   description: string;
+  logo_url: string;
   referral_url_template: string;
   sort_order: number;
   is_active: boolean;
 };
 
-const emptyForm: FormState = { name: "", display_name: "", description: "", referral_url_template: "", sort_order: 0, is_active: true };
+const emptyForm: FormState = { name: "", display_name: "", description: "", logo_url: "", referral_url_template: "", sort_order: 0, is_active: true };
 
 export default function ManageTypesPage() {
   const { user } = useAuth();
@@ -131,6 +132,7 @@ export default function ManageTypesPage() {
         name: item.name || "",
         display_name: item.display_name || "",
         description: item.description || "",
+        logo_url: item.logo_url || "",
         referral_url_template: item.referral_url_template || "",
         sort_order: item.sort_order ?? 0,
         is_active: item.is_active ?? true,
@@ -182,6 +184,10 @@ export default function ManageTypesPage() {
                 <input type="text" value={newItem.description} onChange={e => setNewItem(p => ({ ...p, description: e.target.value }))} className="input input-bordered w-full" placeholder="Optional" />
               </div>
               <div>
+                <label className="label"><span className="label-text">Logo URL</span></label>
+                <input type="text" value={newItem.logo_url} onChange={e => setNewItem(p => ({ ...p, logo_url: e.target.value }))} className="input input-bordered w-full" placeholder="https://example.com/logo.png" />
+              </div>
+              <div>
                 <label className="label"><span className="label-text">Sort Order</span></label>
                 <input type="number" value={newItem.sort_order} onChange={e => setNewItem(p => ({ ...p, sort_order: parseInt(e.target.value) || 0 }))} className="input input-bordered w-full" />
               </div>
@@ -224,6 +230,10 @@ export default function ManageTypesPage() {
                   <input type="text" value={editingItem.data.description} onChange={e => setEditingItem(p => p ? { ...p, data: { ...p.data, description: e.target.value } } : null)} className="input input-bordered w-full" />
                 </div>
                 <div>
+                  <label className="label"><span className="label-text">Logo URL</span></label>
+                  <input type="text" value={editingItem.data.logo_url} onChange={e => setEditingItem(p => p ? { ...p, data: { ...p.data, logo_url: e.target.value } } : null)} className="input input-bordered w-full" placeholder="https://example.com/logo.png" />
+                </div>
+                <div>
                   <label className="label"><span className="label-text">Sort Order</span></label>
                   <input type="number" value={editingItem.data.sort_order} onChange={e => setEditingItem(p => p ? { ...p, data: { ...p.data, sort_order: parseInt(e.target.value) || 0 } } : null)} className="input input-bordered w-full" />
                 </div>
@@ -244,16 +254,17 @@ export default function ManageTypesPage() {
         {/* Table */}
         <div className="overflow-x-auto">
           <table className="table table-zebra">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Display Name</th>
-                <th>Description</th>
-                <th>Sort Order</th>
-                <th>Active</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Display Name</th>
+                  <th>Description</th>
+                  <th>Logo URL</th>
+                  <th>Sort Order</th>
+                  <th>Active</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
             <tbody>
               {items?.length ? (
                 items.map((item: any) => (
@@ -261,6 +272,7 @@ export default function ManageTypesPage() {
                     <td><code className="text-xs">{item.name}</code></td>
                     <td>{item.display_name}</td>
                     <td className="text-base-content/60">{item.description || "—"}</td>
+                    <td>{item.logo_url ? <a href={item.logo_url} target="_blank" rel="noreferrer" className="link link-primary text-xs">View</a> : "—"}</td>
                     <td>{item.sort_order ?? 0}</td>
                     <td>{item.is_active ? <span className="badge badge-success badge-sm">Active</span> : <span className="badge badge-ghost badge-sm">Inactive</span>}</td>
                     <td>

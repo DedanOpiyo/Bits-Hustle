@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 const SITE_NAME = 'Bits Hustle Hub';
 const SITE_URL = 'https://bitshustlehubs.co.ke';
-const DEFAULT_IMAGE = '/favicon.svg';
+const DEFAULT_IMAGE = '/og-image.svg';
 const DEFAULT_DESCRIPTION =
   'Professional assignment management platform. Submit your project brief and get matched with vetted specialists. Managed quality, private by design.';
 
@@ -16,6 +16,9 @@ interface SEOProps {
   type?: 'website' | 'article' | 'profile';
   schema?: Record<string, unknown>;
   noIndex?: boolean;
+  breadcrumbs?: Array<{ name: string; item: string }>;
+  language?: string;
+  alternateLanguages?: Array<{ hreflang: string; href: string }>;
 }
 
 export default function SEO({
@@ -26,6 +29,9 @@ export default function SEO({
   type = 'website',
   schema,
   noIndex = false,
+  breadcrumbs,
+  language,
+  alternateLanguages,
 }: SEOProps) {
   const location = useLocation();
   const fullTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
@@ -59,6 +65,15 @@ export default function SEO({
         <meta name="robots" content="index, follow" />
       )}
       <link rel="canonical" href={canonicalUrl} />
+      {language && <html lang={language} />}
+      {alternateLanguages && alternateLanguages.map((alt) => (
+        <link
+          key={alt.hreflang}
+          rel="alternate"
+          hrefLang={alt.hreflang}
+          href={alt.href}
+        />
+      ))}
 
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
@@ -85,6 +100,20 @@ export default function SEO({
       <script type="application/ld+json">
         {JSON.stringify(organizationSchema)}
       </script>
+      {breadcrumbs && breadcrumbs.length > 0 && (
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: breadcrumbs.map((crumb, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: crumb.name,
+              item: crumb.item,
+            })),
+          })}
+        </script>
+      )}
     </Helmet>
   );
 }

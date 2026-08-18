@@ -38,29 +38,25 @@ export default function TaskViewPage() {
 
   // Get platform details - either from embedded data or by looking up in platforms array
   const getPlatformDisplayName = (): string => {
-    // If task has embedded platform data with display_name, use it
     if (task.platform?.display_name) {
       return task.platform.display_name;
     }
     
-    // If task has embedded platform data with displayName (camelCase), use it
     if (task.platform?.displayName) {
       return task.platform.displayName;
     }
     
-    // If we have platforms loaded and task has platform ID, look it up
     if (platforms && task.platform_id) {
       const platform = platforms.find(p => p.id === task.platform_id);
       if (platform) {
-        return platform.displayName; // Platform type uses camelCase
+        return platform.display_name;
       }
     }
     
-    // If we have platforms loaded and task has embedded platform with ID, look it up
     if (platforms && task.platform?.id) {
       const platform = platforms.find(p => p.id === task.platform.id);
       if (platform) {
-        return platform.displayName; // Platform type uses camelCase
+        return platform.display_name;
       }
     }
     

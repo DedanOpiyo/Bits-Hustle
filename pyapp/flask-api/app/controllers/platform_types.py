@@ -50,6 +50,7 @@ class PlatformTypeController:
             display_name=payload["display_name"],
             description=payload.get("description"),
             referral_url_template=payload.get("referral_url_template"),
+            logo_url=payload.get("logo_url"),
             webhook_secret=secret,
             webhook_secret_hash=secret_hash,
             webhook_secret_prefix=secret_prefix,
@@ -67,7 +68,7 @@ class PlatformTypeController:
         pt = db.session.get(PlatformType, pt_id)
         if not pt:
             raise ValueError("not found")
-        camel_to_snake = {"name": "name", "display_name": "display_name", "description": "description", "referral_url_template": "referral_url_template", "sortOrder": "sort_order", "isActive": "is_active"}
+        camel_to_snake = {"name": "name", "display_name": "display_name", "description": "description", "referral_url_template": "referral_url_template", "logoUrl": "logo_url", "logo_url": "logo_url", "sortOrder": "sort_order", "sort_order": "sort_order", "isActive": "is_active", "is_active": "is_active"}
         for field, col in camel_to_snake.items():
             if field in payload:
                 setattr(pt, col, payload[field])
